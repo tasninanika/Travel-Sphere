@@ -20,10 +20,12 @@ const ContextProvider = ({ children }) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
+
   // create user using google
   const createUserWithGoogle = () => {
-    signInWithPopup(auth, googleProvider);
+    return signInWithPopup(auth, googleProvider);
   };
+
   // login existing user
   const loginUser = (email, password) => {
     setLoading(true);
@@ -32,7 +34,7 @@ const ContextProvider = ({ children }) => {
 
   // logout
   const logOutUser = () => {
-    signOut(auth);
+    return signOut(auth);
   };
 
   useEffect(() => {
@@ -53,7 +55,12 @@ const ContextProvider = ({ children }) => {
     logOutUser,
     createUserWithGoogle,
   };
-  return <FirebaseAuthContext value={userInfo}>{children}</FirebaseAuthContext>;
+
+  return (
+    <FirebaseAuthContext.Provider value={userInfo}>
+      {children}
+    </FirebaseAuthContext.Provider>
+  );
 };
 
 export default ContextProvider;
