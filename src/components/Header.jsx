@@ -2,7 +2,7 @@ import Hero from "./Hero";
 
 const Header = () => {
   return (
-    <div className="background-img ">
+    <div className="background-img">
       <Hero />
     </div>
   );
