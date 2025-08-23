@@ -12,10 +12,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const links = (
     <>
-      <a
-        href="https://the-dragon-news-2443b.web.app/"
-        className="hover:text-yellow-400"
-      >
+      <a href="" className="hover:text-yellow-400">
         News
       </a>
       <NavLink to="/destination" className="hover:text-yellow-400">
