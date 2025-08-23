@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import { useState, useContext } from "react";
 import { Menu, X } from "lucide-react";
 import logo from "../assets/logo.png";
 import { Link, NavLink, useNavigate } from "react-router";
@@ -6,7 +6,7 @@ import Button from "./Button";
 import { FirebaseAuthContext } from "../provider/FirebaseAuthContext";
 
 const Navbar = () => {
-  const { user, logOutUser } = use(FirebaseAuthContext);
+  const { user, logOutUser } = useContext(FirebaseAuthContext);
 
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
