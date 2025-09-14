@@ -29,12 +29,12 @@ const Destination = () => {
     bestTimeToVisit: "November to February",
     idealDuration: "3-5 days",
     photos: [
-      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-      "https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1568&q=80",
-      "https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1450&q=80",
-      "https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1634&q=80",
-      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-      "https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1473&q=80",
+      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1470&q=80",
+      "https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1568&q=80",
+      "https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?auto=format&fit=crop&w=1450&q=80",
+      "https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?auto=format&fit=crop&w=1634&q=80",
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1470&q=80",
+      "https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=1473&q=80",
     ],
     attractions: [
       {
@@ -73,106 +73,85 @@ const Destination = () => {
       },
     ],
   };
-  console.log(destination.photos[2]);
+
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <div className="relative h-84 w-full">
+      <div className="relative h-[70vh] w-full">
         <img
           src={destination.photos[2]}
           alt={destination.name}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-opacity-30 flex items-center justify-center">
+        <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
           <div className="text-center text-white px-4">
-            <h1 className="text-4xl text-gray-900 md:text-6xl font-bold mb-2">
+            <h1 className="text-5xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">
               {destination.name}
             </h1>
-            <div className="flex items-center justify-center">
-              <MapPin className="h-5 w-5 mr-1" />
-              <p className="text-xl">{destination.location}</p>
+            <div className="flex items-center justify-center text-lg font-medium">
+              <MapPin className="h-5 w-5 mr-2 text-yellow-400" />
+              <span>{destination.location}</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
         {/* Tabs */}
         <div className="border-b border-gray-200">
-          <nav className="-mb-px flex space-x-2 md:space-x-8">
-            <button
-              onClick={() => setActiveTab("overview")}
-              className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm ${
-                activeTab === "overview"
-                  ? "border-blue-500 text-blue-600"
-                  : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-              }`}
-            >
-              Overview
-            </button>
-            <button
-              onClick={() => setActiveTab("attractions")}
-              className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm ${
-                activeTab === "attractions"
-                  ? "border-blue-500 text-blue-600"
-                  : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-              }`}
-            >
-              Attractions
-            </button>
-            <button
-              onClick={() => setActiveTab("photos")}
-              className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm ${
-                activeTab === "photos"
-                  ? "border-blue-500 text-blue-600"
-                  : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-              }`}
-            >
-              Photos
-            </button>
-            <button
-              onClick={() => setActiveTab("reviews")}
-              className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm ${
-                activeTab === "reviews"
-                  ? "border-blue-500 text-blue-600"
-                  : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-              }`}
-            >
-              Reviews
-            </button>
+          <nav className="flex space-x-6 justify-center">
+            {["overview", "attractions", "photos", "reviews"].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`py-4 px-3 text-sm font-semibold uppercase tracking-wide transition ${
+                  activeTab === tab
+                    ? "border-b-2 border-blue-600 text-blue-600"
+                    : "text-gray-500 hover:text-gray-700"
+                }`}
+              >
+                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+              </button>
+            ))}
           </nav>
         </div>
 
         {/* Tab Content */}
-        <div className="py-8">
+        <div className="py-10">
+          {/* Overview */}
           {activeTab === "overview" && (
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-10">
               <div className="md:col-span-2">
-                <h2 className="text-2xl font-bold mb-4">
+                <h2 className="text-3xl font-bold mb-4 text-gray-800">
                   About {destination.name}
                 </h2>
-                <p className="text-gray-700 mb-6">{destination.description}</p>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  {destination.description}
+                </p>
 
-                <h3 className="text-xl font-semibold mb-3">Highlights</h3>
+                <h3 className="text-2xl font-semibold mb-3 text-gray-800">
+                  Highlights
+                </h3>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-                  {destination.highlights.map((highlight, index) => (
-                    <li key={index} className="flex items-start">
-                      <Star className="h-5 w-5 text-yellow-400 mr-2 mt-0.5 flex-shrink-0" />
-                      <span>{highlight}</span>
+                  {destination.highlights.map((highlight, i) => (
+                    <li
+                      key={i}
+                      className="flex items-center gap-2 text-gray-700"
+                    >
+                      <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
+                      {highlight}
                     </li>
                   ))}
                 </ul>
 
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-4">
+                <div className="bg-blue-50 p-6 rounded-lg shadow-md">
+                  <h3 className="text-xl font-semibold mb-4 text-gray-800">
                     Travel Information
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="flex items-start">
-                      <div className="bg-blue-100 p-3 rounded-full mr-4">
-                        <CalendarDays className="h-6 w-6 text-blue-600" />
-                      </div>
+                    <div className="flex gap-3 items-start">
+                      <CalendarDays className="h-6 w-6 text-blue-600" />
                       <div>
                         <h4 className="font-medium text-gray-900">
                           Best Time to Visit
@@ -182,10 +161,8 @@ const Destination = () => {
                         </p>
                       </div>
                     </div>
-                    <div className="flex items-start">
-                      <div className="bg-blue-100 p-3 rounded-full mr-4">
-                        <Users className="h-6 w-6 text-blue-600" />
-                      </div>
+                    <div className="flex gap-3 items-start">
+                      <Users className="h-6 w-6 text-blue-600" />
                       <div>
                         <h4 className="font-medium text-gray-900">
                           Ideal Duration
@@ -199,17 +176,20 @@ const Destination = () => {
                 </div>
               </div>
 
+              {/* Side Card */}
               <div className="md:col-span-1">
-                <div className="bg-gray-50 p-6 rounded-lg sticky top-4">
-                  <h3 className="text-xl font-semibold mb-4">Plan Your Trip</h3>
-                  <div className="space-y-4">
-                    <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium">
+                <div className="bg-white p-6 rounded-lg shadow-lg sticky top-4">
+                  <h3 className="text-xl font-semibold mb-4 text-gray-800">
+                    Plan Your Trip
+                  </h3>
+                  <div className="space-y-3">
+                    <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium shadow">
                       Book Hotels
                     </button>
-                    <button className="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-lg font-medium">
+                    <button className="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-lg font-medium shadow">
                       Find Tours
                     </button>
-                    <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-3 px-4 rounded-lg font-medium">
+                    <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-3 px-4 rounded-lg font-medium shadow">
                       Get Travel Guide
                     </button>
                   </div>
@@ -240,30 +220,23 @@ const Destination = () => {
             </div>
           )}
 
+          {/* Attractions */}
           {activeTab === "attractions" && (
             <div>
-              <h2 className="text-2xl font-bold mb-6">
-                Top Attractions in {destination.name}
+              <h2 className="text-3xl font-bold mb-6 text-gray-800">
+                Top Attractions
               </h2>
               <div className="grid md:grid-cols-2 gap-6">
-                {destination.attractions.map((attraction, index) => (
+                {destination.attractions.map((a, i) => (
                   <div
-                    key={index}
-                    className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow"
+                    key={i}
+                    className="border rounded-lg p-6 hover:shadow-lg transition"
                   >
-                    <div className="p-6">
-                      <div className="flex items-start">
-                        <div className="bg-gray-100 p-3 rounded-full mr-4">
-                          {attraction.icon}
-                        </div>
-                        <div>
-                          <h3 className="text-xl font-semibold mb-1">
-                            {attraction.name}
-                          </h3>
-                          <p className="text-gray-600">
-                            {attraction.description}
-                          </p>
-                        </div>
+                    <div className="flex items-start gap-4">
+                      {a.icon}
+                      <div>
+                        <h3 className="text-xl font-semibold mb-1">{a.name}</h3>
+                        <p className="text-gray-600">{a.description}</p>
                       </div>
                     </div>
                   </div>
@@ -272,66 +245,67 @@ const Destination = () => {
             </div>
           )}
 
+          {/* Photos */}
           {activeTab === "photos" && (
             <div>
-              <h2 className="text-2xl font-bold mb-6">
-                Photos of {destination.name}
-              </h2>
+              <h2 className="text-3xl font-bold mb-6 text-gray-800">Photos</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {(showAllPhotos
                   ? destination.photos
-                  : destination.photos.slice(0, 3)
-                ).map((photo, index) => (
-                  <div
-                    key={index}
-                    className="aspect-w-16 aspect-h-9 overflow-hidden rounded-lg"
-                  >
-                    <img
-                      src={photo}
-                      alt={`${destination.name} ${index + 1}`}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300 cursor-pointer"
-                    />
-                  </div>
+                  : destination.photos.slice(0, 6)
+                ).map((photo, i) => (
+                  <img
+                    key={i}
+                    src={photo}
+                    alt={`${destination.name} ${i + 1}`}
+                    className="rounded-lg shadow hover:scale-105 transition-transform duration-300 cursor-pointer"
+                  />
                 ))}
               </div>
-              {!showAllPhotos && destination.photos.length > 3 && (
+              {!showAllPhotos && (
                 <div className="mt-6 text-center">
                   <button
                     onClick={() => setShowAllPhotos(true)}
-                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
+                    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 shadow"
                   >
-                    View All {destination.photos.length} Photos
+                    View All Photos
                   </button>
                 </div>
               )}
             </div>
           )}
 
+          {/* Reviews */}
           {activeTab === "reviews" && (
             <div>
-              <h2 className="text-2xl font-bold mb-6">Traveler Reviews</h2>
+              <h2 className="text-3xl font-bold mb-6 text-gray-800">
+                Traveler Reviews
+              </h2>
               <div className="space-y-6">
-                {destination.reviews.map((review, index) => (
-                  <div key={index} className="border-b pb-6">
-                    <div className="flex items-center mb-2">
-                      <div className="flex items-center mr-4">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            className={`h-5 w-5 ${
-                              i < review.rating
-                                ? "text-yellow-400 fill-yellow-400"
-                                : "text-gray-300"
-                            }`}
-                          />
-                        ))}
-                      </div>
-                      <span className="font-medium">{review.user}</span>
+                {destination.reviews.map((review, i) => (
+                  <div
+                    key={i}
+                    className="p-6 border rounded-lg shadow-sm hover:shadow-md transition"
+                  >
+                    <div className="flex items-center mb-3">
+                      {[...Array(5)].map((_, idx) => (
+                        <Star
+                          key={idx}
+                          className={`h-5 w-5 ${
+                            idx < review.rating
+                              ? "text-yellow-400 fill-yellow-400"
+                              : "text-gray-300"
+                          }`}
+                        />
+                      ))}
+                      <span className="ml-3 font-semibold text-gray-800">
+                        {review.user}
+                      </span>
                     </div>
-                    <p className="text-gray-700">{review.comment}</p>
+                    <p className="text-gray-600">{review.comment}</p>
                   </div>
                 ))}
-                <button className="mt-4 inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                <button className="mt-6 px-6 py-2 border border-gray-300 rounded-lg shadow text-gray-700 hover:bg-gray-50">
                   Write a Review
                 </button>
               </div>
