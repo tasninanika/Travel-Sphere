@@ -1,17 +1,25 @@
 import { useState, useContext } from "react";
 import { Menu, X } from "lucide-react";
 import logo from "../assets/logo.png";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import logo1 from "../assets/logo1.png";
+import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import Button from "./Button";
 import { FirebaseAuthContext } from "../provider/FirebaseAuthContext";
 
 const Navbar = () => {
   const { user, logOutUser } = useContext(FirebaseAuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
 
+  const isHome = location.pathname === "/";
+
   const navLinkClass = ({ isActive }) =>
-    isActive ? "text-yellow-400 font-semibold" : "hover:text-yellow-400";
+    isActive
+      ? "text-yellow-400 font-semibold"
+      : isHome
+      ? "hover:text-yellow-400 text-white"
+      : "hover:text-yellow-400 text-black";
 
   const links = (
     <>
@@ -42,22 +50,29 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="w-full bg-white shadow text-black">
-      {/* Full width but aligned with hero/sections */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 py-3 flex items-center justify-between">
+    <nav
+      className={`w-full z-50 ${
+        isHome
+          ? "absolute top-0 left-0 text-white"
+          : "bg-white shadow text-black"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 py-4 flex items-center justify-between">
         {/* Logo */}
         <div onClick={() => navigate("/")} className="cursor-pointer">
-          <img src={logo} alt="Logo" className="w-24" />
+          <img src={isHome ? logo1 : logo} alt="Logo" className="w-24" />
         </div>
 
-        {/* Search Box (hidden on mobile) */}
-        <div className="flex-1 mx-6 max-w-md hidden md:block">
-          <input
-            type="text"
-            placeholder="Search your destination..."
-            className="w-full px-4 py-2 rounded-lg text-black border border-gray-300 focus:border-yellow-400 outline-none transition"
-          />
-        </div>
+        {/* Search Box (Home page only) */}
+        {isHome && (
+          <div className="flex-1 mx-6 max-w-md hidden md:block">
+            <input
+              type="text"
+              placeholder="Search your destination..."
+              className="w-full px-4 py-2 rounded-lg text-white border border-gray-300 focus:border-yellow-400 outline-none transition bg-[#FFFFFF33]"
+            />
+          </div>
+        )}
 
         {/* Desktop Nav Links */}
         <div className="hidden md:flex items-center gap-6">
@@ -81,13 +96,22 @@ const Navbar = () => {
 
       {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <div className="md:hidden bg-black text-white px-4 py-4 space-y-4">
-          <input
-            type="text"
-            placeholder="Search your destination..."
-            className="w-full px-4 py-2 rounded-lg bg-gray-900 border border-gray-600 outline-none focus:border-yellow-400 transition"
-          />
+        <div
+          className={`md:hidden px-4 py-4 space-y-4 ${
+            isHome ? "bg-black/90 text-white" : "bg-white text-black shadow"
+          }`}
+        >
+          {/* Mobile search (Home page only) */}
+          {isHome && (
+            <input
+              type="text"
+              placeholder="Search your destination..."
+              className="w-full px-4 py-2 rounded-lg bg-gray-900 border border-gray-600 text-white outline-none focus:border-yellow-400 transition"
+            />
+          )}
+
           <div className="flex flex-col gap-3">{links}</div>
+
           {user ? (
             <Button onClick={handleLogout} label="Log Out" />
           ) : (
