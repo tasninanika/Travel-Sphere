@@ -1,9 +1,32 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Calendar, MapPin, ChevronDown } from "lucide-react";
 import Button from "../../components/Button";
 import HeroSection from "../../components/HeroSection";
 import bgBooking from "../../assets/bg-img.png";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { FirebaseAuthContext } from "../../provider/FirebaseAuthContext";
+
+// Success Modal Component
+const SuccessModal = ({ onClose }) => {
+  return (
+    <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+      <div className="bg-white rounded-2xl shadow-xl p-8 text-center max-w-sm w-full animate-fade-in">
+        <h2 className="text-2xl font-bold text-green-600 mb-3">
+          Booking Successful 🎉
+        </h2>
+        <p className="text-gray-600 mb-6">
+          Your booking has been confirmed. Have a safe journey!
+        </p>
+        <button
+          onClick={onClose}
+          className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  );
+};
 
 const Booking = () => {
   const [origin, setOrigin] = useState("Dhaka");
@@ -12,6 +35,10 @@ const Booking = () => {
   const [returnDate, setReturnDate] = useState("12/09");
   const [showOriginDropdown, setShowOriginDropdown] = useState(false);
   const [showDestinationDropdown, setShowDestinationDropdown] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const { user } = useContext(FirebaseAuthContext);
+  const navigate = useNavigate();
 
   const popularCities = [
     "Dhaka",
@@ -22,6 +49,15 @@ const Booking = () => {
     "Khulna",
     "Barisal",
   ];
+
+  // handle booking
+  const handleBooking = () => {
+    if (!user) {
+      navigate("/login"); // not logged in → redirect login
+    } else {
+      setShowSuccess(true); // logged in → show success modal
+    }
+  };
 
   return (
     <HeroSection bgImage={bgBooking}>
@@ -137,15 +173,17 @@ const Booking = () => {
             </div>
 
             {/* Button */}
-            <Link to="/login">
-              <Button
-                label="Start Booking"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg mt-3 transition duration-200"
-              />
-            </Link>
+            <Button
+              label="Start Booking"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg mt-3 transition duration-200"
+              onClick={handleBooking}
+            />
           </div>
         </div>
       </div>
+
+      {/* Success Modal */}
+      {showSuccess && <SuccessModal onClose={() => setShowSuccess(false)} />}
     </HeroSection>
   );
 };
