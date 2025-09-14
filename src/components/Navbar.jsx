@@ -41,7 +41,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="w-full text-white bg-gray-900">
+    <nav className="w-full text-black">
       <div className="container mx-auto px-4 md:px-8 lg:px-12 py-3 flex items-center justify-center gap-36 md:gap-12">
         {/* Logo */}
         <div>
@@ -51,7 +51,6 @@ const Navbar = () => {
             alt="Logo"
             className="w-24"
           />
-          {/* <span className="text-xl font-bold">Travel <span className="text-yellow-400">Guru</span></span> */}
         </div>
 
         {/* Search Box (hidden on mobile) */}
