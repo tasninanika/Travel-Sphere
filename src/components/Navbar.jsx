@@ -59,24 +59,25 @@ const Navbar = () => {
       }`}
     >
       <div className="mx-auto px-4 md:px-8 lg:px-12 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <div onClick={() => navigate("/")} className="cursor-pointer">
-          <img src={isHome ? logo1 : logo} alt="Logo" className="w-24" />
+        {/* Left side: Logo + Search */}
+        <div className="flex items-center gap-4">
+          <div onClick={() => navigate("/")} className="cursor-pointer">
+            <img src={isHome ? logo1 : logo} alt="Logo" className="w-24" />
+          </div>
+
+          {isHome && (
+            <div className="flex-1 max-w-md hidden md:flex items-center relative">
+              <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white opacity-full" />
+              <input
+                type="text"
+                placeholder="Search your destination..."
+                className="w-96 pl-10 pr-4 py-2 rounded-lg bg-[#FFFFFF33] text-white placeholder-white border border-gray-300 focus:border-yellow-400 outline-none transition"
+              />
+            </div>
+          )}
         </div>
 
-        {/* Search Box */}
-        {isHome && (
-          <div className="flex-1 max-w-md hidden md:flex items-center relative ml-4">
-            <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white opacity-70" />
-            <input
-              type="text"
-              placeholder="Search your destination..."
-              className="w-full pl-10 pr-4 py-2 rounded-lg bg-[#FFFFFF33] text-white placeholder-white border border-gray-300 focus:border-yellow-400 outline-none transition"
-            />
-          </div>
-        )}
-
-        {/* Desktop Nav Links */}
+        {/* Right side: Nav links + Login/Logout */}
         <div className="hidden md:flex items-center gap-6">
           {links}
           {user ? (
