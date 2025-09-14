@@ -43,7 +43,7 @@ const Hero = () => {
     <div className="container mx-auto px-4 md:px-8 lg:px-12 pt-4 md:pt-40 flex flex-col md:flex-row items-center gap-6">
       {/* Left text */}
       <div className="text-white space-y-6 md:flex-1 text-center md:text-justify transition-all duration-500">
-        <h3 className="text-3xl md:text-6xl font-semibold">
+        <h3 className="text-3xl md:text-6xl font-semibold uppercase">
           {activeLocation.name}
         </h3>
         <p className="md:w-10/12">{activeLocation.description}</p>
@@ -67,10 +67,10 @@ const Hero = () => {
             <img
               src={loc.img}
               alt={loc.name}
-              className="rounded-2xl w-48 h-40 md:h-76 object-cover transition-opacity duration-500"
+              className="rounded-2xl w-48 h-40 md:h-96 md:w-full object-cover transition-opacity duration-500"
             />
             {/* Name overlay */}
-            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-2 py-1 rounded-md text-sm md:text-base font-semibold">
+            <div className="absolute bottom-6 left-1/3 transform -translate-x-1/2  text-white px-2 py-1 rounded-md text-sm md:text-2xl font-semibold uppercase">
               {loc.name}
             </div>
           </div>
