@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { Menu, X } from "lucide-react";
 import { FiSearch } from "react-icons/fi";
+import { FaUserCircle } from "react-icons/fa"; // fallback avatar
 import logo from "../assets/logo.png";
 import logo1 from "../assets/logo1.png";
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
@@ -12,6 +13,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const isHome = location.pathname === "/";
 
@@ -36,11 +38,6 @@ const Navbar = () => {
       <NavLink to="/contact" className={navLinkClass}>
         Contact
       </NavLink>
-      {user && (
-        <NavLink to="/profile" className={navLinkClass}>
-          Profile
-        </NavLink>
-      )}
     </>
   );
 
@@ -75,11 +72,46 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Right side: Nav links + Login/Logout */}
-        <div className="hidden md:flex items-center gap-6">
+        {/* Right side */}
+        <div className="hidden md:flex items-center gap-6 relative">
           {links}
           {user ? (
-            <Button onClick={handleLogout} label="Log Out" />
+            <div className="relative">
+              <button
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                className="focus:outline-none"
+              >
+                {user.photoURL ? (
+                  <img
+                    src={user.photoURL}
+                    alt="Profile"
+                    className="w-10 h-10 rounded-full border-2 border-yellow-400 cursor-pointer"
+                    title={user.displayName || "User"}
+                  />
+                ) : (
+                  <FaUserCircle className="w-10 h-10 text-yellow-400 cursor-pointer" />
+                )}
+              </button>
+
+              {/* Dropdown */}
+              {dropdownOpen && (
+                <div className="absolute right-0 mt-2 w-40 bg-white text-black rounded-lg shadow-lg py-2">
+                  <Link
+                    to="/profile"
+                    className="block px-4 py-2 hover:bg-gray-100"
+                    onClick={() => setDropdownOpen(false)}
+                  >
+                    Profile
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
           ) : (
             <Link to="/login">
               <Button label="Login" />
@@ -95,14 +127,13 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Menu */}
       {isOpen && (
         <div
           className={`md:hidden px-4 py-4 space-y-4 ${
             isHome ? "bg-black/90 text-white" : "bg-white text-black shadow"
           }`}
         >
-          {/* Mobile search */}
           {isHome && (
             <input
               type="text"
@@ -114,9 +145,23 @@ const Navbar = () => {
           <div className="flex flex-col gap-3">{links}</div>
 
           {user ? (
-            <Button onClick={handleLogout} label="Log Out" />
+            <div className="flex items-center gap-3">
+              <Link to="/profile">
+                {user.photoURL ? (
+                  <img
+                    src={user.photoURL}
+                    alt="Profile"
+                    className="w-10 h-10 rounded-full border-2 border-yellow-400 cursor-pointer"
+                    title={user.displayName || "User"}
+                  />
+                ) : (
+                  <FaUserCircle className="w-10 h-10 text-yellow-400 cursor-pointer" />
+                )}
+              </Link>
+              <Button onClick={handleLogout} label="Log Out" />
+            </div>
           ) : (
-            <Link to="/login">
+            <Link to="/login" onClick={() => setIsOpen(false)}>
               <Button label="Login" />
             </Link>
           )}
