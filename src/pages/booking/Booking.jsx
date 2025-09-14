@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Calendar, MapPin, ChevronDown } from "lucide-react";
 import Button from "../../components/Button";
-import { Link } from "react-router";
+import HeroSection from "../../components/HeroSection";
+import bgBooking from "../../assets/bg-img.png";
+import { Link } from "react-router-dom";
 
 const Booking = () => {
   const [origin, setOrigin] = useState("Dhaka");
@@ -21,142 +23,130 @@ const Booking = () => {
     "Barisal",
   ];
 
-  const handleOriginSelect = (city) => {
-    setOrigin(city);
-    setShowOriginDropdown(false);
-  };
-
-  const handleDestinationSelect = (city) => {
-    setDestination(city);
-    setShowDestinationDropdown(false);
-  };
-
   return (
-    <div className="background-img pt-4 md:pt-12">
-      <div className="w-11/12 mx-auto px-4 flex flex-col md:flex-row items-center">
-        <div className="w-full md:w-6/12 text-white space-y-6 text-center md:text-justify mb-8 md:mb-0">
-          <h3 className="text-3xl md:text-6xl font-semibold">COX'S BAZAR</h3>
-          <p className="md:w-10/12">
-            {" "}
-            Cox's Bazar is a city, fishing port, tourism centre and district
-            headquarters in southeastern Bangladesh. It is famous mostly for its
-            long natural sandy beach...{" "}
+    <HeroSection bgImage={bgBooking}>
+      <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+        {/* Left side: Hero Text */}
+        <div className="md:flex-1 text-white space-y-6 text-center md:text-left">
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+            Explore Bangladesh Like Never Before
+          </h1>
+          <p className="md:w-10/12 text-lg md:text-xl text-white/90">
+            Discover breathtaking destinations, plan your journey with ease, and
+            make unforgettable memories. From pristine beaches to lush hills,
+            start your adventure now by selecting your origin, destination, and
+            travel dates.
+          </p>
+          <p className="md:w-10/12 text-white/80">
+            Our platform makes booking simple and quick. Find the best trips,
+            compare options, and embark on a journey tailored just for you.
           </p>
         </div>
 
-        <div className="w-full md:max-w-md bg-white rounded-xl shadow-md">
-          <div className="p-6">
-            <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
-              {/* Origin */}
-              <div className="flex-1 relative">
-                <div className="flex items-center gap-2 text-gray-500">
-                  <MapPin className="h-4 w-4" />
-                  <span className="text-xs font-medium">Origin</span>
-                </div>
-                <div
-                  className="flex items-center justify-between cursor-pointer mt-1"
-                  onClick={() => setShowOriginDropdown(!showOriginDropdown)}
-                >
-                  <h3 className="text-lg font-semibold">{origin}</h3>
-                  <ChevronDown className="h-5 w-5 text-gray-400" />
-                </div>
-                {showOriginDropdown && (
-                  <div className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg">
-                    {popularCities.map((city) => (
-                      <div
-                        key={`origin-${city}`}
-                        className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                        onClick={() => handleOriginSelect(city)}
-                      >
-                        {city}
-                      </div>
-                    ))}
-                  </div>
-                )}
+        {/* Right side: Booking Card */}
+        <div className="w-full md:w-[420px] bg-white rounded-2xl shadow-xl p-6 md:p-8 relative z-10">
+          <div className="space-y-5">
+            {/* Origin */}
+            <div className="relative">
+              <label className="flex items-center gap-2 text-gray-500 text-xs font-medium">
+                <MapPin className="h-4 w-4" /> Origin
+              </label>
+              <div
+                className="flex items-center justify-between mt-1 cursor-pointer border-b border-gray-300 py-2 px-3"
+                onClick={() => setShowOriginDropdown(!showOriginDropdown)}
+              >
+                <span className="text-gray-700 font-medium">{origin}</span>
+                <ChevronDown className="h-5 w-5 text-gray-400" />
               </div>
-
-              {/* Destination */}
-              <div className="flex-1 relative">
-                <div className="flex items-center gap-2 text-gray-500">
-                  <MapPin className="h-4 w-4" />
-                  <span className="text-xs font-medium">Destination</span>
+              {showOriginDropdown && (
+                <div className="absolute top-full left-0 w-full bg-white border border-gray-200 rounded-lg shadow-lg mt-1 z-20">
+                  {popularCities.map((city) => (
+                    <div
+                      key={city}
+                      className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                      onClick={() => {
+                        setOrigin(city);
+                        setShowOriginDropdown(false);
+                      }}
+                    >
+                      {city}
+                    </div>
+                  ))}
                 </div>
-                <div
-                  className="flex items-center justify-between cursor-pointer mt-1"
-                  onClick={() =>
-                    setShowDestinationDropdown(!showDestinationDropdown)
-                  }
-                >
-                  <h3 className="text-lg font-semibold">{destination}</h3>
-                  <ChevronDown className="h-5 w-5 text-gray-400" />
-                </div>
-                {showDestinationDropdown && (
-                  <div className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg">
-                    {popularCities.map((city) => (
-                      <div
-                        key={`dest-${city}`}
-                        className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                        onClick={() => handleDestinationSelect(city)}
-                      >
-                        {city}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
+              )}
             </div>
 
-            <div className="border-t border-gray-200 my-4"></div>
+            {/* Destination */}
+            <div className="relative">
+              <label className="flex items-center gap-2 text-gray-500 text-xs font-medium">
+                <MapPin className="h-4 w-4" /> Destination
+              </label>
+              <div
+                className="flex items-center justify-between mt-1 cursor-pointer border-b border-gray-300 py-2 px-3"
+                onClick={() =>
+                  setShowDestinationDropdown(!showDestinationDropdown)
+                }
+              >
+                <span className="text-gray-700 font-medium">{destination}</span>
+                <ChevronDown className="h-5 w-5 text-gray-400" />
+              </div>
+              {showDestinationDropdown && (
+                <div className="absolute top-full left-0 w-full bg-white border border-gray-200 rounded-lg shadow-lg mt-1 z-20">
+                  {popularCities.map((city) => (
+                    <div
+                      key={city}
+                      className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                      onClick={() => {
+                        setDestination(city);
+                        setShowDestinationDropdown(false);
+                      }}
+                    >
+                      {city}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
 
-            <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
-              {/* Dates */}
+            {/* Dates */}
+            <div className="flex gap-3">
               <div className="flex-1">
-                <div className="flex items-center gap-2 text-gray-500">
-                  <Calendar className="h-4 w-4" />
-                  <span className="text-xs font-medium">From - To</span>
-                </div>
-                <div className="flex gap-2 mt-1">
-                  <input
-                    type="text"
-                    value={departureDate}
-                    onChange={(e) => setDepartureDate(e.target.value)}
-                    className="text-sm font-medium w-16 border-b border-gray-300 focus:outline-none focus:border-blue-500"
-                    placeholder="DD/MM"
-                  />
-                  <span className="text-sm font-medium">-</span>
-                  <input
-                    type="text"
-                    value={returnDate}
-                    onChange={(e) => setReturnDate(e.target.value)}
-                    className="text-sm font-medium w-16 border-b border-gray-300 focus:outline-none focus:border-blue-500"
-                    placeholder="DD/MM"
-                  />
-                </div>
+                <label className="flex items-center gap-2 text-gray-500 text-xs font-medium">
+                  <Calendar className="h-4 w-4" /> From
+                </label>
+                <input
+                  type="text"
+                  value={departureDate}
+                  onChange={(e) => setDepartureDate(e.target.value)}
+                  placeholder="DD/MM"
+                  className="mt-1 w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-blue-500 text-gray-700"
+                />
               </div>
-
-              {/* Button */}
-              <div className="flex-1 md:text-right">
-                <Link to="/login">
-                  {" "}
-                  <Button
-                    label="Start Booking"
-                    className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition duration-200"
-                    onClick={() => {
-                      console.log({
-                        origin,
-                        destination,
-                        departureDate,
-                        returnDate,
-                      });
-                    }}
-                  ></Button>
-                </Link>
+              <div className="flex-1">
+                <label className="flex items-center gap-2 text-gray-500 text-xs font-medium">
+                  <Calendar className="h-4 w-4" /> To
+                </label>
+                <input
+                  type="text"
+                  value={returnDate}
+                  onChange={(e) => setReturnDate(e.target.value)}
+                  placeholder="DD/MM"
+                  className="mt-1 w-full border-b border-gray-300 py-2 px-3 focus:outline-none focus:border-blue-500 text-gray-700"
+                />
               </div>
             </div>
+
+            {/* Button */}
+            <Link to="/login">
+              <Button
+                label="Start Booking"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg mt-3 transition duration-200"
+              />
+            </Link>
           </div>
         </div>
       </div>
-    </div>
+    </HeroSection>
   );
 };
 
