@@ -104,7 +104,7 @@ const Navbar = () => {
             isHome ? "bg-black/90 text-white" : "bg-white text-black shadow"
           }`}
         >
-          {/* Mobile search (Home page only) */}
+          {/* Mobile search */}
           {isHome && (
             <input
               type="text"
