@@ -30,7 +30,6 @@ const locations = [
 const Hero = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Auto slide every 3 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % locations.length);
@@ -41,7 +40,7 @@ const Hero = () => {
   const activeLocation = locations[activeIndex];
 
   return (
-    <div className="container mx-auto px-4 md:px-8 lg:px-12 pt-4 md:pt-12 flex flex-col md:flex-row items-center gap-6">
+    <div className="container mx-auto px-4 md:px-8 lg:px-12 pt-4 md:pt-40 flex flex-col md:flex-row items-center gap-6">
       {/* Left text */}
       <div className="text-white space-y-6 md:flex-1 text-center md:text-justify transition-all duration-500">
         <h3 className="text-3xl md:text-6xl font-semibold">
