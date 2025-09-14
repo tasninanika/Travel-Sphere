@@ -12,7 +12,7 @@ import { useState } from "react";
 
 const Destination = () => {
   const [activeTab, setActiveTab] = useState("overview");
-  const [showAllPhotos, setShowAllPhotos] = useState(false);
+  const [showAllPhotos] = useState(false);
 
   const destination = {
     name: "Cox's Bazar",
@@ -30,32 +30,30 @@ const Destination = () => {
     idealDuration: "3-5 days",
     photos: [
       "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1470&q=80",
-      "https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1568&q=80",
-      "https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?auto=format&fit=crop&w=1450&q=80",
-      "https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?auto=format&fit=crop&w=1634&q=80",
       "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1470&q=80",
       "https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=1473&q=80",
+      "https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?auto=format&fit=crop&w=1450&q=80",
     ],
     attractions: [
       {
         name: "Cox's Bazar Beach",
         description: "The main 120km beach with golden sands and gentle waves",
-        icon: <Waves className="h-6 w-6 text-blue-500" />,
+        icon: <Waves className="h-6 w-6 text-sky-500" />,
       },
       {
         name: "Himchari National Park",
         description: "Lush hills with waterfalls and hiking trails",
-        icon: <Mountain className="h-6 w-6 text-green-500" />,
+        icon: <Mountain className="h-6 w-6 text-green-600" />,
       },
       {
         name: "Inani Beach",
         description: "Known for its coral stones and clear waters",
-        icon: <Sun className="h-6 w-6 text-yellow-500" />,
+        icon: <Sun className="h-6 w-6 text-amber-500" />,
       },
       {
         name: "Local Seafood Markets",
         description: "Fresh catches daily with authentic flavors",
-        icon: <Utensils className="h-6 w-6 text-red-500" />,
+        icon: <Utensils className="h-6 w-6 text-orange-500" />,
       },
     ],
     reviews: [
@@ -75,11 +73,11 @@ const Destination = () => {
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-emerald-50">
       {/* Hero Section */}
       <div className="relative h-[70vh] w-full">
         <img
-          src={destination.photos[2]}
+          src={destination.photos[1]}
           alt={destination.name}
           className="w-full h-full object-cover"
         />
@@ -89,7 +87,7 @@ const Destination = () => {
               {destination.name}
             </h1>
             <div className="flex items-center justify-center text-lg font-medium">
-              <MapPin className="h-5 w-5 mr-2 text-yellow-400" />
+              <MapPin className="h-5 w-5 mr-2 text-amber-400" />
               <span>{destination.location}</span>
             </div>
           </div>
@@ -107,7 +105,7 @@ const Destination = () => {
                 onClick={() => setActiveTab(tab)}
                 className={`py-4 px-3 text-sm font-semibold uppercase tracking-wide transition ${
                   activeTab === tab
-                    ? "border-b-2 border-blue-600 text-blue-600"
+                    ? "border-b-2 border-green-600 text-green-600"
                     : "text-gray-500 hover:text-gray-700"
                 }`}
               >
@@ -126,7 +124,7 @@ const Destination = () => {
                 <h2 className="text-3xl font-bold mb-4 text-gray-800">
                   About {destination.name}
                 </h2>
-                <p className="text-gray-600 mb-6 leading-relaxed">
+                <p className="text-gray-700 mb-6 leading-relaxed">
                   {destination.description}
                 </p>
 
@@ -139,19 +137,19 @@ const Destination = () => {
                       key={i}
                       className="flex items-center gap-2 text-gray-700"
                     >
-                      <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
+                      <Star className="h-5 w-5 text-amber-400 fill-amber-400" />
                       {highlight}
                     </li>
                   ))}
                 </ul>
 
-                <div className="bg-blue-50 p-6 rounded-lg shadow-md">
+                <div className="bg-green-50 p-6 rounded-lg shadow-md">
                   <h3 className="text-xl font-semibold mb-4 text-gray-800">
                     Travel Information
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="flex gap-3 items-start">
-                      <CalendarDays className="h-6 w-6 text-blue-600" />
+                      <CalendarDays className="h-6 w-6 text-green-600" />
                       <div>
                         <h4 className="font-medium text-gray-900">
                           Best Time to Visit
@@ -162,7 +160,7 @@ const Destination = () => {
                       </div>
                     </div>
                     <div className="flex gap-3 items-start">
-                      <Users className="h-6 w-6 text-blue-600" />
+                      <Users className="h-6 w-6 text-green-600" />
                       <div>
                         <h4 className="font-medium text-gray-900">
                           Ideal Duration
@@ -183,13 +181,13 @@ const Destination = () => {
                     Plan Your Trip
                   </h3>
                   <div className="space-y-3">
-                    <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium shadow">
+                    <button className="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-lg font-medium shadow">
                       Book Hotels
                     </button>
-                    <button className="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-lg font-medium shadow">
+                    <button className="w-full bg-amber-600 hover:bg-amber-700 text-white py-3 px-4 rounded-lg font-medium shadow">
                       Find Tours
                     </button>
-                    <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-3 px-4 rounded-lg font-medium shadow">
+                    <button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 px-4 rounded-lg font-medium shadow">
                       Get Travel Guide
                     </button>
                   </div>
@@ -230,7 +228,7 @@ const Destination = () => {
                 {destination.attractions.map((a, i) => (
                   <div
                     key={i}
-                    className="border rounded-lg p-6 hover:shadow-lg transition"
+                    className="border rounded-lg p-6 hover:shadow-lg transition bg-white"
                   >
                     <div className="flex items-start gap-4">
                       {a.icon}
@@ -252,7 +250,7 @@ const Destination = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {(showAllPhotos
                   ? destination.photos
-                  : destination.photos.slice(0, 6)
+                  : destination.photos.slice(0, 3)
                 ).map((photo, i) => (
                   <img
                     key={i}
@@ -262,16 +260,6 @@ const Destination = () => {
                   />
                 ))}
               </div>
-              {!showAllPhotos && (
-                <div className="mt-6 text-center">
-                  <button
-                    onClick={() => setShowAllPhotos(true)}
-                    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 shadow"
-                  >
-                    View All Photos
-                  </button>
-                </div>
-              )}
             </div>
           )}
 
@@ -285,7 +273,7 @@ const Destination = () => {
                 {destination.reviews.map((review, i) => (
                   <div
                     key={i}
-                    className="p-6 border rounded-lg shadow-sm hover:shadow-md transition"
+                    className="p-6 border rounded-lg shadow-sm bg-white hover:shadow-md transition"
                   >
                     <div className="flex items-center mb-3">
                       {[...Array(5)].map((_, idx) => (
@@ -293,7 +281,7 @@ const Destination = () => {
                           key={idx}
                           className={`h-5 w-5 ${
                             idx < review.rating
-                              ? "text-yellow-400 fill-yellow-400"
+                              ? "text-amber-400 fill-amber-400"
                               : "text-gray-300"
                           }`}
                         />
@@ -305,7 +293,7 @@ const Destination = () => {
                     <p className="text-gray-600">{review.comment}</p>
                   </div>
                 ))}
-                <button className="mt-6 px-6 py-2 border border-gray-300 rounded-lg shadow text-gray-700 hover:bg-gray-50">
+                <button className="mt-6 px-6 py-2 border border-gray-300 rounded-lg shadow text-gray-700 hover:bg-gray-100">
                   Write a Review
                 </button>
               </div>
