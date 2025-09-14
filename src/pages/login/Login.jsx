@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FirebaseAuthContext } from "../../provider/FirebaseAuthContext";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
@@ -9,7 +9,6 @@ const Login = () => {
   const { setUser, loginUser, createUserWithGoogle } =
     useContext(FirebaseAuthContext);
   const navigate = useNavigate();
-  const location = useLocation();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -20,7 +19,7 @@ const Login = () => {
       .then((userCredential) => {
         const currentUser = userCredential.user;
         setUser(currentUser);
-        navigate(location?.state || "/");
+        navigate("/");
       })
       .catch((err) => setError(err.code));
   };
@@ -28,8 +27,9 @@ const Login = () => {
   const handleGoogleLogin = () => {
     createUserWithGoogle()
       .then((result) => {
-        setUser(result);
-        navigate(location?.state || "/");
+        const currentUser = result.user;
+        setUser(currentUser);
+        navigate("/");
       })
       .catch((err) => console.log(err));
   };
