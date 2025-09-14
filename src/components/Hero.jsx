@@ -3,7 +3,7 @@ import { FiArrowRight } from "react-icons/fi";
 import Button from "./Button";
 import sajek from "../assets/Sajek.png";
 import srimongol from "../assets/Sreemongol.png";
-import sundarban from "../assets/Sundorbon.png";
+import sundarban from "../assets/sundorbon.png";
 import { Link } from "react-router-dom";
 
 // Location data with descriptions
