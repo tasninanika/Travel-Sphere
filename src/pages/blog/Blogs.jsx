@@ -39,6 +39,18 @@ const Blogs = () => {
 
   return (
     <div className="px-4 py-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:px-8 lg:py-20">
+      {/* Page Heading */}
+      <div className="text-center mb-12">
+        <h2 className="text-3xl md:text-5xl font-bold">
+          Our <span className="text-yellow-500">Blogs</span>
+        </h2>
+        <p className="mt-3 text-gray-600 max-w-2xl mx-auto text-lg">
+          Explore amazing stories, guides, and travel tips from Cox's Bazar and
+          beyond.
+        </p>
+      </div>
+
+      {/* Blog Cards */}
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {blogPosts.map((post) => (
           <div
