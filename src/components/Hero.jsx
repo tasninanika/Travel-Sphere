@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { FiArrowRight } from "react-icons/fi";
 import Button from "./Button";
 import sajek from "../assets/Sajek.png";
 import srimongol from "../assets/Sreemongol.png";
@@ -48,7 +49,15 @@ const Hero = () => {
         </h3>
         <p className="md:w-10/12">{activeLocation.description}</p>
         <Link to="/booking">
-          <Button label="Booking" />
+          <Button
+            label={
+              <div className="flex items-center gap-2">
+                Booking <FiArrowRight />
+              </div>
+            }
+            bgColor="#F9A51A"
+            textColor="white"
+          />
         </Link>
       </div>
 
@@ -70,7 +79,7 @@ const Hero = () => {
               className="rounded-2xl w-48 h-40 md:h-96 md:w-full object-cover transition-opacity duration-500"
             />
             {/* Name overlay */}
-            <div className="absolute bottom-6 left-1/3 transform -translate-x-1/2  text-white px-2 py-1 rounded-md text-sm md:text-2xl font-semibold uppercase">
+            <div className="absolute bottom-6 left-1/3 transform -translate-x-1/2 text-white px-2 py-1 rounded-md text-sm md:text-2xl font-semibold uppercase">
               {loc.name}
             </div>
           </div>
