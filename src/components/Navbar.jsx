@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { Menu, X } from "lucide-react";
+import { FiSearch } from "react-icons/fi";
 import logo from "../assets/logo.png";
 import logo1 from "../assets/logo1.png";
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
@@ -57,19 +58,20 @@ const Navbar = () => {
           : "bg-white shadow text-black"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 py-4 flex items-center justify-between">
+      <div className="mx-auto px-4 md:px-8 lg:px-12 py-4 flex items-center justify-between">
         {/* Logo */}
         <div onClick={() => navigate("/")} className="cursor-pointer">
           <img src={isHome ? logo1 : logo} alt="Logo" className="w-24" />
         </div>
 
-        {/* Search Box (Home page only) */}
+        {/* Search Box */}
         {isHome && (
-          <div className="flex-1 mx-6 max-w-md hidden md:block">
+          <div className="flex-1 max-w-md hidden md:flex items-center relative ml-4">
+            <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white opacity-70" />
             <input
               type="text"
               placeholder="Search your destination..."
-              className="w-full px-4 py-2 rounded-lg text-white border border-gray-300 focus:border-yellow-400 outline-none transition bg-[#FFFFFF33]"
+              className="w-full pl-10 pr-4 py-2 rounded-lg bg-[#FFFFFF33] text-white placeholder-white border border-gray-300 focus:border-yellow-400 outline-none transition"
             />
           </div>
         )}
