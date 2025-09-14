@@ -88,9 +88,9 @@ const Login = () => {
             <FcGoogle size={20} />
             <span>Sign in with Google</span>
           </button>
-          <button className="flex items-center justify-center gap-2 w-full border border-gray-300 rounded-lg py-2 bg-blue-600 text-white hover:bg-blue-700 transition">
-            <FaFacebook size={18} />
-            <span>Sign in with Facebook</span>
+          <button className="flex items-center justify-center w-full border border-gray-300 rounded-lg py-2 hover:bg-gray-100 transition gap-2">
+            <FaFacebook className="text-blue-600 text-lg" />
+            Sign in with Facebook
           </button>
         </div>
 
