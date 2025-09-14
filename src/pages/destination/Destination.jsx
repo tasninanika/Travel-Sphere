@@ -105,7 +105,7 @@ const Destination = () => {
                 onClick={() => setActiveTab(tab)}
                 className={`py-4 px-3 text-sm font-semibold uppercase tracking-wide transition ${
                   activeTab === tab
-                    ? "border-b-2 border-green-600 text-green-600"
+                    ? "border-b-2 border-yellow-400 text-yellow-500"
                     : "text-gray-500 hover:text-gray-700"
                 }`}
               >
