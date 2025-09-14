@@ -149,7 +149,10 @@ const Navbar = () => {
               <Link to="/profile">
                 {user.photoURL ? (
                   <img
-                    src={user.photoURL}
+                    src={
+                      user.photoURL ||
+                      "https://i.ibb.co/3fQf6Gk/default-avatar.png"
+                    }
                     alt="Profile"
                     className="w-10 h-10 rounded-full border-2 border-yellow-400 cursor-pointer"
                     title={user.displayName || "User"}
