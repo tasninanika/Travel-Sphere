@@ -1,7 +1,7 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { FiSearch } from "react-icons/fi";
-import { FaUserCircle } from "react-icons/fa"; // fallback avatar
+import { FaUserCircle } from "react-icons/fa";
 import logo from "../assets/logo.png";
 import logo1 from "../assets/logo1.png";
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
@@ -47,6 +47,13 @@ const Navbar = () => {
       .catch((error) => console.log(error));
   };
 
+  // ✅ Redirect to homepage on login
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
+
   return (
     <nav
       className={`w-full z-50 ${
@@ -81,16 +88,15 @@ const Navbar = () => {
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 className="focus:outline-none"
               >
-                {user.photoURL ? (
-                  <img
-                    src={user.photoURL}
-                    alt="Profile"
-                    className="w-10 h-10 rounded-full border-2 border-yellow-400 cursor-pointer"
-                    title={user.displayName || "User"}
-                  />
-                ) : (
-                  <FaUserCircle className="w-10 h-10 text-yellow-400 cursor-pointer" />
-                )}
+                <img
+                  src={
+                    user.photoURL ||
+                    "https://i.ibb.co/3fQf6Gk/default-avatar.png"
+                  }
+                  alt={user.displayName || "User"}
+                  className="w-10 h-10 rounded-full border-2 border-yellow-400 cursor-pointer"
+                  title={user.displayName || "User"}
+                />
               </button>
 
               {/* Dropdown */}
@@ -147,19 +153,15 @@ const Navbar = () => {
           {user ? (
             <div className="flex items-center gap-3">
               <Link to="/profile">
-                {user.photoURL ? (
-                  <img
-                    src={
-                      user.photoURL ||
-                      "https://i.ibb.co/3fQf6Gk/default-avatar.png"
-                    }
-                    alt="Profile"
-                    className="w-10 h-10 rounded-full border-2 border-yellow-400 cursor-pointer"
-                    title={user.displayName || "User"}
-                  />
-                ) : (
-                  <FaUserCircle className="w-10 h-10 text-yellow-400 cursor-pointer" />
-                )}
+                <img
+                  src={
+                    user.photoURL ||
+                    "https://i.ibb.co/3fQf6Gk/default-avatar.png"
+                  }
+                  alt={user.displayName || "User"}
+                  className="w-10 h-10 rounded-full border-2 border-yellow-400 cursor-pointer"
+                  title={user.displayName || "User"}
+                />
               </Link>
               <Button onClick={handleLogout} label="Log Out" />
             </div>
