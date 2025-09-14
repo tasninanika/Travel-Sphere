@@ -181,10 +181,10 @@ const Destination = () => {
                     Plan Your Trip
                   </h3>
                   <div className="space-y-3">
-                    <button className="w-full bg-green-800 hover:bg-green-700 text-white py-3 px-4 rounded-lg font-medium shadow">
+                    <button className="w-full bg-yellow-400 hover:bg-green-500 text-white py-3 px-4 rounded-lg font-medium shadow">
                       Book Hotels
                     </button>
-                    <button className="w-full bg-yellow-700 hover:bg-amber-700 text-white py-3 px-4 rounded-lg font-medium shadow">
+                    <button className="w-full bg-red-400 hover:bg-amber-700 text-white py-3 px-4 rounded-lg font-medium shadow">
                       Find Tours
                     </button>
                     <button className="w-full bg-orange-400 hover:bg-orange-600 text-white py-3 px-4 rounded-lg font-medium shadow">
