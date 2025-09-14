@@ -53,9 +53,7 @@ const Navbar = () => {
   return (
     <nav
       className={`w-full z-50 ${
-        isHome
-          ? "absolute top-0 left-0 text-white"
-          : "bg-white shadow text-black"
+        isHome ? "absolute top-0 left-0 text-white" : "bg-white text-black"
       }`}
     >
       <div className="mx-auto px-4 md:px-8 lg:px-12 py-4 flex items-center justify-between">
