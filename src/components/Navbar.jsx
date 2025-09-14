@@ -1,31 +1,34 @@
 import { useState, useContext } from "react";
 import { Menu, X } from "lucide-react";
 import logo from "../assets/logo.png";
-import { Link, NavLink, useNavigate } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Button from "./Button";
 import { FirebaseAuthContext } from "../provider/FirebaseAuthContext";
 
 const Navbar = () => {
   const { user, logOutUser } = useContext(FirebaseAuthContext);
-
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+
+  const navLinkClass = ({ isActive }) =>
+    isActive ? "text-yellow-400 font-semibold" : "hover:text-yellow-400";
+
   const links = (
     <>
-      <a href="" className="hover:text-yellow-400">
+      <NavLink to="/news" className={navLinkClass}>
         News
-      </a>
-      <NavLink to="/destination" className="hover:text-yellow-400">
+      </NavLink>
+      <NavLink to="/destination" className={navLinkClass}>
         Destination
       </NavLink>
-      <NavLink to="/blogs" className="hover:text-yellow-400">
+      <NavLink to="/blogs" className={navLinkClass}>
         Blogs
       </NavLink>
-      <NavLink to="/contact" className="hover:text-yellow-400">
+      <NavLink to="/contact" className={navLinkClass}>
         Contact
       </NavLink>
       {user && (
-        <NavLink to="/profile" className="hover:text-yellow-400">
+        <NavLink to="/profile" className={navLinkClass}>
           Profile
         </NavLink>
       )}
@@ -34,31 +37,25 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logOutUser()
-      .then(() => {})
-      .catch((error) => {
-        console.log(error);
-      });
+      .then(() => navigate("/"))
+      .catch((error) => console.log(error));
   };
 
   return (
-    <nav className="w-full text-black">
-      <div className="container mx-auto px-4 md:px-8 lg:px-12 py-3 flex items-center justify-center gap-36 md:gap-12">
+    <nav className="w-full bg-white shadow text-black">
+      {/* Full width but aligned with hero/sections */}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 py-3 flex items-center justify-between">
         {/* Logo */}
-        <div>
-          <img
-            onClick={() => navigate("/")}
-            src={logo}
-            alt="Logo"
-            className="w-24"
-          />
+        <div onClick={() => navigate("/")} className="cursor-pointer">
+          <img src={logo} alt="Logo" className="w-24" />
         </div>
 
         {/* Search Box (hidden on mobile) */}
         <div className="flex-1 mx-6 max-w-md hidden md:block">
           <input
             type="text"
-            placeholder="Search your Destination..."
-            className="w-full px-4 py-2 rounded-lg text-white border-white outline-none focus:border-yellow-400 border-2"
+            placeholder="Search your destination..."
+            className="w-full px-4 py-2 rounded-lg text-black border border-gray-300 focus:border-yellow-400 outline-none transition"
           />
         </div>
 
@@ -69,7 +66,7 @@ const Navbar = () => {
             <Button onClick={handleLogout} label="Log Out" />
           ) : (
             <Link to="/login">
-              <Button label="login" />
+              <Button label="Login" />
             </Link>
           )}
         </div>
@@ -84,18 +81,18 @@ const Navbar = () => {
 
       {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <div className="md:hidden bg-black/90 px-4 py-4 space-y-3">
+        <div className="md:hidden bg-black text-white px-4 py-4 space-y-4">
           <input
             type="text"
-            placeholder="Search your Destination..."
-            className="w-full px-4 text-white py-2 rounded-lg  outline-none border-2 "
+            placeholder="Search your destination..."
+            className="w-full px-4 py-2 rounded-lg bg-gray-900 border border-gray-600 outline-none focus:border-yellow-400 transition"
           />
-          <div className="grid gap-2">{links}</div>
+          <div className="flex flex-col gap-3">{links}</div>
           {user ? (
             <Button onClick={handleLogout} label="Log Out" />
           ) : (
             <Link to="/login">
-              <Button label="login" />
+              <Button label="Login" />
             </Link>
           )}
         </div>
