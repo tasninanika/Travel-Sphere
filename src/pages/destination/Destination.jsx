@@ -121,10 +121,11 @@ const Destination = () => {
           {activeTab === "overview" && (
             <div className="grid md:grid-cols-3 gap-10">
               <div className="md:col-span-2">
-                <h2 className="text-3xl font-bold mb-4 text-gray-800">
-                  About {destination.name}
+                <h2 className="text-3xl font-bold mb-4 ">
+                  About{" "}
+                  <span className="text-yellow-400">{destination.name}</span>
                 </h2>
-                <p className="text-gray-700 mb-6 leading-relaxed">
+                <p className="text-yellow-700 mb-6 leading-relaxed">
                   {destination.description}
                 </p>
 
