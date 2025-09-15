@@ -60,6 +60,3 @@ It integrates **authentication for secure booking** and provides a seamless, mod
 - **State Management** → React Context API  
 - **Authentication** → Firebase Auth  
 - **UI Enhancements** → Responsive design with Tailwind utilities  
-
-git clone https://github.com/your-username/travel-sphere.git
-cd travel-sphere
