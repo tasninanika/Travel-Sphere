@@ -22,6 +22,13 @@
 It integrates **authentication for secure booking** and provides a seamless, modern UI powered by **React + TailwindCSS**.
 
 ---
+## 📸 Preview
+
+<p align="center">
+  <img src="public/preview.PNG" alt="Travel Sphere Preview" width="800"/>
+</p>
+
+---
 
 ## ✨ Key Features
 
